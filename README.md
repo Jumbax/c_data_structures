@@ -1,3 +1,3 @@
 # c_data_structures
 
-Data structures API in C.
+Data structures in C.
