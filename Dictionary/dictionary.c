@@ -56,12 +56,12 @@ set_table_t *increase_hashmap_size(set_table_t *table)
 
     size_t old_hashmap_size = table->hashmap_size;
     table->hashmap_size *= 2;
-    table->nodes = realloc(table->nodes, table->hashmap_size * sizeof(set_node_t *));
+     void* new_data = realloc(table->nodes, table->hashmap_size * sizeof(set_node_t *));
     if (!table->nodes)
     {
         return NULL;
     }
-
+    table->nodes = new_data;
     memset(table->nodes, 0, table->hashmap_size * sizeof(set_node_t *));
 
     for (size_t i = 0; i < old_hashmap_size; i++)
