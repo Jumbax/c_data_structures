@@ -35,17 +35,6 @@ set_table_t *dictionary_table_new(const size_t hashmap_size)
     return table;
 }
 
-set_node_t *dictionary_get_last(set_table_t *table, size_t index)
-{
-    set_node_t **nodes = table->nodes;
-    set_node_t *head = nodes[index];
-    while (head->next)
-    {
-        head = head->next;
-    }
-    return head;
-}
-
 set_table_t *increase_hashmap_size(set_table_t *table)
 {
     table->num_collision = 0;
