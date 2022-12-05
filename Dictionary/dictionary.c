@@ -69,7 +69,7 @@ set_table_t *increase_hashmap_size(set_table_t *table)
         set_node_t *new_head = node_list[i];
         while (new_head)
         {
-            size_t hash = djb33x_hash(node_list[i]->key, node_list[i]->key_len);
+            size_t hash = djb33x_hash(new_head->key, new_head->key_len);
             size_t index = hash % table->hashmap_size;
             list_append(to_list(&table->nodes[index]), to_list_node(new_head));
             new_head = new_head->next;
