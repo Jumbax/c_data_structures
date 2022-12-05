@@ -56,7 +56,7 @@ set_table_t *increase_hashmap_size(set_table_t *table)
 
     size_t old_hashmap_size = table->hashmap_size;
     table->hashmap_size *= 2;
-     void* new_data = realloc(table->nodes, table->hashmap_size * sizeof(set_node_t *));
+    void* new_data = realloc(table->nodes, table->hashmap_size * sizeof(set_node_t *));
     if (!table->nodes)
     {
         return NULL;
@@ -67,21 +67,12 @@ set_table_t *increase_hashmap_size(set_table_t *table)
     for (size_t i = 0; i < old_hashmap_size; i++)
     {
         set_node_t *new_head = node_list[i];
-        set_node_t *next = NULL;
         while (new_head)
         {
-            next = new_head->next;
             size_t hash = djb33x_hash(node_list[i]->key, node_list[i]->key_len);
             size_t index = hash % table->hashmap_size;
             list_append(to_list(&table->nodes[index]), to_list_node(new_head));
-            if (next)
-            {
-                new_head = next;
-            }
-            else
-            {
-                new_head = NULL;
-            }
+            new_head = new_head->next;
         }
     }
 

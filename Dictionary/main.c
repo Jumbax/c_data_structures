@@ -2,7 +2,7 @@
 
 int main()
 {
-    set_table_t *my_dict = dictionary_table_new(10);
+    set_table_t *my_dict = dictionary_table_new(1);
     set_node_t *item = dictionary_insert(my_dict, "hi", "goodbye", 2);
     set_node_t *item2 = dictionary_insert(my_dict, "yes", "no", 3);
     set_node_t *item3 = dictionary_insert(my_dict, "good", "bad", 4);
